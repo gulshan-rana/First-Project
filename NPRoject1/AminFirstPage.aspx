@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <asp:Button ID="btnUserAtdnce" CssClass="btn btn-primary" runat="server" Text="User Attendence List" />
        
-            <asp:Button ID="btnUserList" CssClass="btn btn-success" OnClick="btnUserList_Click" runat="server" Text="User List" />
+            <asp:Button ID="btnUserList" CssClass="btn btn-success" OnClick="btnUserList_Click1" runat="server" Text="User List" />
         </div>
     </div>
    <br/>

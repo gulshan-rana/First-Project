@@ -44,5 +44,10 @@ namespace NPRoject1
         {
             Response.Redirect("UserPage.aspx");
         }
+
+        protected void btnUserList_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminAttendenceshow.aspx");
+        }
     }
 }

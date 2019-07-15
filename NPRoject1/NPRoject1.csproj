@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AdminAttendenceshow.aspx" />
     <Content Include="AdminDataShow.aspx" />
     <Content Include="AminFirstPage.aspx" />
     <Content Include="Contact.aspx" />
@@ -172,6 +173,13 @@
     <Content Include="User.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminAttendenceshow.aspx.cs">
+      <DependentUpon>AdminAttendenceshow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminAttendenceshow.aspx.designer.cs">
+      <DependentUpon>AdminAttendenceshow.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminDataShow.aspx.cs">
       <DependentUpon>AdminDataShow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
