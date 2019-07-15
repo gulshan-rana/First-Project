@@ -14,7 +14,7 @@ namespace NPRoject1
     {
         string Constring = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
-       {
+         {
              if(!Page.IsPostBack)
             {
                 refreshdata();
@@ -22,15 +22,20 @@ namespace NPRoject1
         }
         public void refreshdata()
         {
+            int useid = Convert.ToInt32(Session["id"]);
             SqlConnection objSqlConnection = new SqlConnection(Constring);
-            SqlCommand objSqlCommand = new SqlCommand("Select * from UserAttendence where UserID='"+ Session["id"] + "'", objSqlConnection);
+            SqlCommand objSqlCommand = new SqlCommand("SearchData", objSqlConnection);
+            objSqlCommand.CommandType = CommandType.StoredProcedure;
+            objSqlCommand.Parameters.AddWithValue("@Searchto", ISearchTo.Value);
+            objSqlCommand.Parameters.AddWithValue("@SearchFrom", ISearchFrom.Value);
+            objSqlCommand.Parameters.AddWithValue("@UserID", useid);
             SqlDataAdapter objSqlDataAdapter = new SqlDataAdapter(objSqlCommand);
             DataTable dt = new DataTable();
             objSqlDataAdapter.Fill(dt);
-            ViewState["ID"] = dt.Rows[0]["id"].ToString();
             GridViewID.DataSource = dt;
             GridViewID.DataBind();
         }
+
 
         protected void IDCheckIN_Click(object sender, EventArgs e)
         {
@@ -60,9 +65,11 @@ namespace NPRoject1
             refreshdata();
         }
 
-       
-        
-       
-        
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+
+            refreshdata();
+            //objSqlConnection.Close();
+        }
     }
 }

@@ -2,15 +2,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <br />
+    <div>
+        <asp:Label ID="lblSearchTo" runat="server" Text="Search TO"></asp:Label>
+        <input id="ISearchTo" type="date" runat="server" />
+        <asp:Label ID="lblFrom" runat="server" Text="FRom"></asp:Label>
+         <input id="ISearchFrom" type="date" runat="server" />
+        <asp:Button ID="btnSearch" runat="server" Text=" Search " OnClick="btnSearch_Click" />
+    </div>
+    <br />
     <div>
         <asp:Button ID="IDCheckIN" runat="server" Text="CheckIn" OnClick="IDCheckIN_Click" />
-    </div>
-    <div>
+   
         <asp:Button ID="IDCheckOut" runat="server" Text="CheckOut" OnClick="IDCheckOut_Click" />
     </div>
 
-   <h1>Heading List</h1>
+   <h1>Attendence Record</h1>
     <asp:GridView ID="GridViewID" runat="server" AutoGenerateColumns="false" >
         <Columns>
             <asp:BoundField DataField="CheckIN" HeaderText="CheckIN Date" />
