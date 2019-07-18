@@ -22,6 +22,15 @@ namespace NPRoject1 {
         protected global::System.Web.UI.WebControls.TextBox textboxFirstName;
         
         /// <summary>
+        /// RRFirstname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RRFirstname;
+        
+        /// <summary>
         /// textboxLastName control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace NPRoject1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox textboxLastName;
+        
+        /// <summary>
+        /// RRLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RRLastName;
         
         /// <summary>
         /// textboxEmailAddress control.
@@ -40,6 +58,15 @@ namespace NPRoject1 {
         protected global::System.Web.UI.WebControls.TextBox textboxEmailAddress;
         
         /// <summary>
+        /// RREmailAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RREmailAddress;
+        
+        /// <summary>
         /// textboxPassword control.
         /// </summary>
         /// <remarks>
@@ -49,94 +76,40 @@ namespace NPRoject1 {
         protected global::System.Web.UI.WebControls.TextBox textboxPassword;
         
         /// <summary>
-        /// textboxAddress control.
+        /// RRPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textboxAddress;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RRPassword;
         
         /// <summary>
-        /// textboxPhoneNumber control.
+        /// textboxConPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textboxPhoneNumber;
+        protected global::System.Web.UI.WebControls.TextBox textboxConPassword;
         
         /// <summary>
-        /// Country control.
+        /// RRConPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Country;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RRConPassword;
         
         /// <summary>
-        /// DDCountry control.
+        /// CompValidate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDCountry;
-        
-        /// <summary>
-        /// lblState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblState;
-        
-        /// <summary>
-        /// DDState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDState;
-        
-        /// <summary>
-        /// lblCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCity;
-        
-        /// <summary>
-        /// DDcity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDcity;
-        
-        /// <summary>
-        /// FileUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FileUpload;
-        
-        /// <summary>
-        /// FileUploadDP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUploadDP;
+        protected global::System.Web.UI.WebControls.CompareValidator CompValidate;
         
         /// <summary>
         /// btnSave control.

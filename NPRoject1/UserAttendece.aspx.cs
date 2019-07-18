@@ -21,7 +21,7 @@ namespace NPRoject1
             }
         }
         public void refreshdata()
-        {
+       {
             int useid = Convert.ToInt32(Session["id"]);
             SqlConnection objSqlConnection = new SqlConnection(Constring);
             SqlCommand objSqlCommand = new SqlCommand("SearchData", objSqlConnection);
@@ -34,6 +34,7 @@ namespace NPRoject1
             objSqlDataAdapter.Fill(dt);
             GridViewID.DataSource = dt;
             GridViewID.DataBind();
+            
         }
 
 

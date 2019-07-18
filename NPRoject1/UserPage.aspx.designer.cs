@@ -184,12 +184,21 @@ namespace NPRoject1 {
         protected global::System.Web.UI.WebControls.Label lblImage;
         
         /// <summary>
-        /// imageID control.
+        /// FileUploadID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imageID;
+        protected global::System.Web.UI.WebControls.FileUpload FileUploadID;
+        
+        /// <summary>
+        /// BntUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BntUpdate;
     }
 }

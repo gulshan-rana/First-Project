@@ -38,98 +38,48 @@
                     </div>
                     <div class="panel-body">
                        <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6">
+                           <div class="col-sm-12">
                                <div class="form-group">
-                                   <asp:TextBox ID="textboxFirstName" Placeholder="First Name" runat="server"></asp:TextBox>
+                                   <asp:TextBox ID="textboxFirstName" CssClass="form-control" Placeholder="First Name" runat="server"></asp:TextBox>
+                                   <asp:RequiredFieldValidator ID="RRFirstname" runat="server" ControlToValidate="textboxFirstName" ErrorMessage="First Name Required" ForeColor="Red" ValidationGroup="SUbmit"></asp:RequiredFieldValidator>
                                </div>
                            </div>
 
-                           <div class="col-xs-6 col-sm-6 col-md-6">
+                           <div class="col-sm-12">
                                <div class="form-group">
-                                    <asp:TextBox ID="textboxLastName" Placeholder="Last Name" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="textboxLastName" CssClass="form-control" Placeholder="Last Name" runat="server"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RRLastName" runat="server" ControlToValidate="textboxLastName" ErrorMessage="Last Name Required" ForeColor="Red" ValidationGroup="SUbmit"></asp:RequiredFieldValidator>
                                </div>
                            </div>
 
-                           <div class="col-xs-6 col-sm-6 col-md-6">
+                           <div class="col-sm-12">
                                <div class="form-group">
-                                   <asp:TextBox ID="textboxEmailAddress" Placeholder="Email Address" runat="server"></asp:TextBox>
-                               </div>
+                                   <asp:TextBox ID="textboxEmailAddress" CssClass="form-control" Placeholder="Email Address" runat="server"></asp:TextBox>
+                                   <asp:RequiredFieldValidator ID="RREmailAddress" runat="server" ControlToValidate="textboxEmailAddress" ErrorMessage="EmailAddress Required" ForeColor="Red" ValidationGroup="SUbmit"></asp:RequiredFieldValidator>
+                                   </div>
                            </div>
 
-                           <div class="col-xs-6 col-sm-6 col-md-6">
+
+
+                           <div class="col-sm-12">
                                <div class="form-group">
-                                  <asp:TextBox ID="textboxPassword" Placeholder="Password" runat="server"></asp:TextBox>
+                                  <asp:TextBox ID="textboxPassword" CssClass="form-control" Placeholder="Password" runat="server"></asp:TextBox>
+                                  <asp:RequiredFieldValidator ID="RRPassword" runat="server" ControlToValidate="textboxPassword" ErrorMessage="Password Required" ForeColor="Red" ValidationGroup="SUbmit"></asp:RequiredFieldValidator>
                                </div>
                            </div>
 
-                           <div class="col-xs-6 col-sm-6 col-md-6">
+                           <div class="col-sm-12">
                                <div class="form-group">
-                                   <asp:TextBox ID="textboxAddress" Placeholder="Address" runat="server"></asp:TextBox>
-                               </div>
-                           </div>
-
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                               <div class="form-group">
-                                   <asp:TextBox ID="textboxPhoneNumber" Placeholder="Phone Number " runat="server"></asp:TextBox>
+                                  <asp:TextBox ID="textboxConPassword" CssClass="form-control" Placeholder="Confirm Password" runat="server"></asp:TextBox>
+                                  <asp:RequiredFieldValidator ID="RRConPassword" runat="server" ControlToValidate="textboxConPassword" ErrorMessage="Confirm Password Required" ForeColor="Red" ValidationGroup="SUbmit"></asp:RequiredFieldValidator>
+                                 <asp:CompareValidator ID="CompValidate" runat="server" ControlToValidate="textboxConPassword" ControlToCompare="textboxPassword" ErrorMessage="Password and Con-Password Not Matched" ForeColor="Red" ValidationGroup="SUbmit"></asp:CompareValidator>
                                </div>
                            </div>
                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <asp:Label ID="Country" runat="server" Text="Country"></asp:Label>
-                                </div>
-
-                                <div class="col-md-9">
-                                    <asp:DropDownList ID="DDCountry" CssClass="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button" runat="server" AutoPostBack="true" DataTextField="CountryName"
-                                DataValueField="CountryID" AppendDataBoundItems="true" OnSelectedIndexChanged="DDCountry_SelectedIndexChanged">
-                               <asp:ListItem Value="0">-Select Country-</asp:ListItem>
-                               </asp:DropDownList>
-                                </div>
-                            </div>
-
-                            <br />
-                           <div class="row">
-                               <div class="col-md-3">
-                                   <asp:Label ID="lblState" runat="server" Text="State"></asp:Label>
-                               </div>
-                               <div class="col-md-9">
-                                    <asp:DropDownList ID="DDState" runat="server" CssClass="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button" AutoPostBack="true" DataTextField="Statename"
-                   DataValueField="StateID" AppendDataBoundItems="true" OnSelectedIndexChanged="DDState_SelectedIndexChanged">
-                    <asp:ListItem Value="0">-Select State-</asp:ListItem>
-                </asp:DropDownList>
-                               </div>
-                           </div>
-                               
-                        <br />
-
-                            <div class="row">
-                               <div class="col-md-3">
-                                   <asp:Label ID="lblCity" runat="server" Text="City"></asp:Label>
-                               </div>
-                               <div class="col-md-9">
-                                   <asp:DropDownList ID="DDcity" runat="server" CssClass="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button" AutoPostBack="true" DataTextField="CityName" 
-                    DataValueField="CityID" AppendDataBoundItems="true">
-                    <asp:ListItem Value="0">-Select City-</asp:ListItem>
-                </asp:DropDownList>
-                               </div>
-                           </div>
-
-                           <br />
-                           
-                               <div class="row">
-                                   <div class="col-md-3">
-                               <asp:Label ID="FileUpload" runat="server" Text="File Upload"></asp:Label>
-                               </div>
-                                <div class="col-md-9" >
-                                   <asp:FileUpload ID="FileUploadDP" runat="server" />
-                               </div>
-                           </div>
-                          
-                           
                            <br />
                            <div class="row">
                                <div class="col-md-9" style="text-align:center">
-                                <asp:Button ID="btnSave" CssClass="btn btn-success" runat="server" Text="Save" OnClick="btnSave_Click" />
+                                <asp:Button ID="btnSave" CssClass="btn btn-success" ValidationGroup="SUbmit" runat="server" Text="Save" OnClick="btnSave_Click" />
                                </div>
                            </div>
                     </div>

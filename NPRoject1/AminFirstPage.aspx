@@ -5,9 +5,9 @@
     <h1 style="text-align:center;">WelCome <asp:Label ID="lblAdmin" runat="server"></asp:Label></h1>
     <div class="row" style="text-align:center;">
         <div class="col-md-12">
-            <asp:Button ID="btnUserAtdnce" CssClass="btn btn-primary" runat="server" Text="User Attendence List" />
+            <asp:Button ID="btnUserAtdnce" CssClass="btn btn-primary" runat="server" OnClick="btnUserAtdnce_Click" Text="User Attendence List" />
        
-            <asp:Button ID="btnUserList" CssClass="btn btn-success" OnClick="btnUserList_Click1" runat="server" Text="User List" />
+            <asp:Button ID="btnUserList" CssClass="btn btn-success" OnClick="btnUserList_Click" runat="server" Text="User List" />
         </div>
     </div>
    <br/>

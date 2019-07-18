@@ -72,7 +72,7 @@
       </tr>
        <tr>
            <td>
-               <asp:DropDownList ID="DDCountryName" runat="server"  DataValueField="CountryID" DataTextField="CountryName">
+               <asp:DropDownList ID="DDCountryName" runat="server" AutoPostBack="true"  DataValueField="CountryID" OnSelectedIndexChanged="DDCountryName_SelectedIndexChanged" DataTextField="CountryName">
                    <asp:ListItem Value="0">--Select Country--</asp:ListItem>
                    
                </asp:DropDownList>
@@ -86,7 +86,7 @@
       </tr>
        <tr>
            <td>
-               <asp:DropDownList ID="DDStateName" runat="server" AutoPostBack="true" DataTextField="StateName" DataValueField="StateID">
+               <asp:DropDownList ID="DDStateName" runat="server" AutoPostBack="true" DataTextField="StateName" DataValueField="StateID" OnSelectedIndexChanged="DDStateName_SelectedIndexChanged">
                     <asp:ListItem Value="0">--Select State--</asp:ListItem>
                </asp:DropDownList>
            </td>
@@ -112,11 +112,17 @@
       </tr>
        <tr>
            <td> 
-               <asp:Image ID="imageID" ImageUrl='<%#Eval("Photo","~/Images/{0}")%>' runat="server" Height="80" Width="90" />
+               <asp:FileUpload ID="FileUploadID" runat="server" />
+              <%-- <asp:Image ID="imageID" ImageUrl='<%#Eval("Photo","~/Images/{0}")%>' runat="server" Height="80" Width="90" />--%> 
+
            </td>
        </tr>
 
-       
+       <tr>
+           <td>
+               <asp:Button ID="BntUpdate" runat="server" Text="Update" OnClick="BntUpdate_Click" />
+           </td>
+       </tr>
 
    </table>
 </asp:Content>

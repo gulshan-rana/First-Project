@@ -37,57 +37,82 @@ namespace NPRoject1
             objSqlCommand.Parameters.AddWithValue("@id", Session["id"]);
             DataSet ds = new DataSet();
             SDA.Fill(ds);
-            //SqlDataReader objSqlDataReader = objSqlCommand.ExecuteReader();
-
             textboxFirstName.Text = ds.Tables[0].Rows[0]["FirstName"].ToString();
             textboxLastName.Text = ds.Tables[0].Rows[0]["LastName"].ToString();
             textboxEmailAddress.Text = ds.Tables[0].Rows[0]["EmailAddress"].ToString();
             textboxPassword.Text = ds.Tables[0].Rows[0]["Password"].ToString();
             textboxAddress.Text = ds.Tables[0].Rows[0]["Address"].ToString();
             textboxPhoneNumber.Text = ds.Tables[0].Rows[0]["PhoneNumber"].ToString();
-            DDCountryName.SelectedValue = ds.Tables[0].Rows[0]["CountryID"].ToString();
             String Photo = "~/Images/" + ds.Tables[0].Rows[0]["Photo"].ToString();
-            imageID.ImageUrl = Photo;
+            //imageID.ImageUrl = Photo;
             objSqlConnection.Close();
         }
 
         public void Country()
         {
+                SqlConnection con = new SqlConnection(ConString);
+                SqlCommand objSqlCommand = new SqlCommand("Select * from Countrytable", con);
+                SqlDataAdapter SDA = new SqlDataAdapter(objSqlCommand);
+                DataTable DT = new DataTable();
+                SDA.Fill(DT);
+                DDCountryName.DataSource = DT;
+                DDCountryName.DataBind();
+                DDCountryName.Items.Insert(0, new ListItem("--Select Country--", "0"));
+
+            
+        }
+        
+
+        protected void DDCountryName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DDStateName.Items.Clear();
+            DDCityName.Items.Clear();
+            DDStateName.Items.Insert(0, new ListItem("--Select State--", "0"));
+            DDCityName.Items.Insert(0, new ListItem("--Select City--"));
             SqlConnection objSqlConnection = new SqlConnection(ConString);
-            SqlCommand objSqlCommand = new SqlCommand("Select * From Countrytable ", objSqlConnection);
+            SqlCommand objSqlCommand = new SqlCommand("Select * From StatesName where CountryID=" + DDCountryName.SelectedItem.Value, objSqlConnection);
             SqlDataAdapter SDA = new SqlDataAdapter(objSqlCommand);
             DataTable DT = new DataTable();
             SDA.Fill(DT);
-            DDCountryName.DataSource = DT;
-            DDCountryName.DataBind();
-            var cou = DT.Rows[0]["CountryID"].ToString();
-            DDCountryName.DataValueField = "CountryID";
-            State(cou);
+            DDStateName.DataSource = DT;
+            DDStateName.DataBind();
         }
-        public void State(string cou)
+
+        protected void DDStateName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DDCityName.Items.Clear();
+            DDCityName.Items.Insert(0, new ListItem("--Select City--"));
+            SqlConnection objSqlConnection = new SqlConnection(ConString);
+            SqlCommand objSqlCommand = new SqlCommand("Select * from CityName where StateID=" + DDStateName.SelectedItem.Value, objSqlConnection);
+            SqlDataAdapter SDA = new SqlDataAdapter(objSqlCommand);
+            DataTable DT = new DataTable();
+            SDA.Fill(DT);
+            DDCityName.DataSource = DT;
+            DDCityName.DataBind();
+        }
 
-                SqlConnection objSqlConnection = new SqlConnection(ConString);
-                SqlCommand objSqlCommand = new SqlCommand("Select * From StatesName where CountryID='" + cou + "'", objSqlConnection);
-                SqlDataAdapter SDA = new SqlDataAdapter(objSqlCommand);
-                DataTable DT = new DataTable();
-                SDA.Fill(DT);
-                DDStateName.DataSource = DT;
-                var State = DT.Rows[0]["StateID"].ToString();
-                DDStateName.DataBind();
-                City(State);
-         }
-
-            public void City(String State)
+        protected void BntUpdate_Click(object sender, EventArgs e)
+        {
+            String fileName = string.Empty;
+            if(FileUploadID.HasFile)
             {
-                SqlConnection objSqlConnection = new SqlConnection(ConString);
-                SqlCommand objSqlCommand = new SqlCommand("Select * From CityName where StateID='" + State + "'", objSqlConnection);
-                SqlDataAdapter SDA = new SqlDataAdapter(objSqlCommand);
-                DataTable DT = new DataTable();
-                SDA.Fill(DT);
-                DDCityName.DataSource = DT;
-                DDCityName.DataBind();
+                fileName = Path.GetFileName(FileUploadID.PostedFile.FileName);
+                FileUploadID.PostedFile.SaveAs(Server.MapPath("~/Images/") + fileName);
             }
 
+            SqlConnection objSqlConnection = new SqlConnection(ConString);
+            SqlCommand objSqlCommand = new SqlCommand("UpdateUserDetails", objSqlConnection);
+            objSqlCommand.CommandType = CommandType.StoredProcedure;
+            objSqlCommand.Parameters.AddWithValue("@FirstName", textboxFirstName.Text);
+            objSqlCommand.Parameters.AddWithValue("@LastName",  textboxLastName.Text);
+            objSqlCommand.Parameters.AddWithValue("@EmailAddress", textboxEmailAddress.Text);
+            objSqlCommand.Parameters.AddWithValue("@Password", textboxPassword.Text);
+            objSqlCommand.Parameters.AddWithValue("@Address", textboxAddress.Text);
+            objSqlCommand.Parameters.AddWithValue("@PhoneNumber", textboxPhoneNumber.Text);
+            objSqlCommand.Parameters.AddWithValue("@CountryID", DDCityName.SelectedItem.Value);
+            objSqlCommand.Parameters.AddWithValue("@StateID", DDStateName.SelectedItem.Value);
+            objSqlCommand.Parameters.AddWithValue("@CityID", DDCityName.SelectedItem.Value);
+            objSqlCommand.Parameters.AddWithValue("@Photo",fileName);
+        }
     }
 }

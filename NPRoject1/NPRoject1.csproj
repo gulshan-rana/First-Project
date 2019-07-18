@@ -111,6 +111,7 @@
     <Content Include="About.aspx" />
     <Content Include="AdminAttendenceshow.aspx" />
     <Content Include="AdminDataShow.aspx" />
+    <Content Include="Admindatashownew.aspx" />
     <Content Include="AminFirstPage.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -186,6 +187,13 @@
     </Compile>
     <Compile Include="AdminDataShow.aspx.designer.cs">
       <DependentUpon>AdminDataShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admindatashownew.aspx.cs">
+      <DependentUpon>Admindatashownew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admindatashownew.aspx.designer.cs">
+      <DependentUpon>Admindatashownew.aspx</DependentUpon>
     </Compile>
     <Compile Include="Amin.Master.cs">
       <DependentUpon>Amin.Master</DependentUpon>
