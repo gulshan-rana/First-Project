@@ -57,6 +57,7 @@ namespace NPRoject1
         protected void btnSignup_Click(object sender, EventArgs e)
         {
             Response.Redirect("RegistrationPage.aspx");
+           
         }
     }
 }

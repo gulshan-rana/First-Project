@@ -18,8 +18,12 @@ namespace NPRoject1
         }
         public void Logout1()
         {
+
+            Session["id"] = null;
             Session.Clear();
+            //Session.RemoveAll();
             Session.Abandon();
+            Session.Contents.RemoveAll();
             Response.Redirect("LogInPage.aspx");
         }
     }

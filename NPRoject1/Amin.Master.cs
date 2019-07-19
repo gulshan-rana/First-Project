@@ -11,7 +11,20 @@ namespace NPRoject1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!Page.IsPostBack)
+            {
+                SessionNull();
+            }
            
+        }
+        public void SessionNull()
+        {
+
+            var SessionStrng = Convert.ToString(Session);
+            if (SessionStrng == "" )
+            {
+                Response.Redirect("LogInPage.aspx");
+            }
         }
     }
 }
