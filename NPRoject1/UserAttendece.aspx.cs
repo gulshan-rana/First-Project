@@ -18,7 +18,28 @@ namespace NPRoject1
              if(!Page.IsPostBack)
             {
                 refreshdata();
+                refreshPage();
             }
+        }
+
+        public void refreshPage()
+        {
+            SqlConnection objSqlConnection = new SqlConnection(Constring);
+            SqlCommand objSqlCommand = new SqlCommand("Select * From UserAttendence Where id=(Select max(id) From UserAttendence)", objSqlConnection);
+            SqlDataAdapter SDA = new SqlDataAdapter(objSqlCommand);
+            DataTable DT = new DataTable();
+            SDA.Fill(DT);
+            
+            var Checkoutt =Convert.ToString(DT.Rows[0]["CheckOut"]);
+            if (Checkoutt == "")
+            {
+                IDCheckIN.Enabled = false;
+            }
+            else
+            {
+                IDCheckOut.Enabled = false;
+            }
+
         }
         public void refreshdata()
        {
@@ -34,6 +55,7 @@ namespace NPRoject1
             objSqlDataAdapter.Fill(dt);
             GridViewID.DataSource = dt;
             GridViewID.DataBind();
+           
             
         }
 
@@ -49,8 +71,13 @@ namespace NPRoject1
             objSqlCommand.Parameters.AddWithValue("@UserID", Convert.ToInt32(Session["id"]));
             objSqlCommand.Parameters.AddWithValue("@CreatedDate",DateTime.Now);
             objSqlCommand.ExecuteNonQuery();
+            IDCheckIN.Enabled = false;
+            IDCheckOut.Enabled = true;
             objSqlConnection.Close();
             refreshdata();
+            lblMessage.Text = "Data Save SucessFully";
+           
+
         }
 
         protected void IDCheckOut_Click(object sender, EventArgs e)
@@ -62,15 +89,18 @@ namespace NPRoject1
             objsqlconnection.Open();
             objsqlcommand.Parameters.AddWithValue("@checkout", DateTime.Now);
             objsqlcommand.ExecuteNonQuery();
+            IDCheckOut.Enabled = false;
+            IDCheckIN.Enabled = true;
             objsqlconnection.Close();
             refreshdata();
+            lblMessage.Text = "Data Save SucessFully";
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
 
             refreshdata();
-            //objSqlConnection.Close();
+     
         }
     }
 }

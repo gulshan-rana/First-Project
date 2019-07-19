@@ -21,8 +21,14 @@ namespace NPRoject1
             {
                 DropDownList();
                 refreshdata();
-                
+              
+
             }
+        }
+
+        public void buttonsearch()
+        {
+            
         }
 
         public void refreshdata()
@@ -30,7 +36,9 @@ namespace NPRoject1
             SqlConnection objSqlConnection = new SqlConnection(constring);
             SqlCommand objSqlCommand = new SqlCommand("AdminAttendenceShownew", objSqlConnection);
             objSqlCommand.Parameters.AddWithValue("@id", DDName.SelectedItem.Value);
+            Session["IID"] = DDName.SelectedItem.Value;
             objSqlCommand.Parameters.AddWithValue("@DDName", DDName.SelectedItem.Text);
+            
             objSqlCommand.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter objSqlDataAdapter = new SqlDataAdapter(objSqlCommand);
             DataTable objDataTable = new DataTable();
@@ -43,7 +51,6 @@ namespace NPRoject1
         public void DropDownList()
         {
             DDName.Items.Clear();
-           
             SqlConnection objSqlConnection = new SqlConnection(constring);
             SqlCommand objSqlCommand = new SqlCommand("Select * From LoginP ", objSqlConnection);
             SqlDataAdapter DA = new SqlDataAdapter(objSqlCommand);
@@ -62,7 +69,17 @@ namespace NPRoject1
 
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
-            refreshdata();
+            SqlConnection objSqlConnection = new SqlConnection(constring);
+            SqlCommand objSqlCommand = new SqlCommand("AdminSearchDate", objSqlConnection);
+            objSqlCommand.CommandType = CommandType.StoredProcedure;
+            objSqlCommand.Parameters.AddWithValue("@id", Session["IID"]);
+            objSqlCommand.Parameters.AddWithValue("@Searchto", SearchTo.Value);
+            objSqlCommand.Parameters.AddWithValue("@SearchFrom", SearchFrom.Value);
+            SqlDataAdapter objSqlDataAdapter = new SqlDataAdapter(objSqlCommand);
+            DataTable objDataTable = new DataTable();
+            objSqlDataAdapter.Fill(objDataTable);
+            GridViewID.DataSource = objDataTable;
+            GridViewID.DataBind();
         }
     }
 }

@@ -15,7 +15,14 @@
         <asp:Button ID="IDCheckIN" runat="server" Text="CheckIn" OnClick="IDCheckIN_Click" />
    
         <asp:Button ID="IDCheckOut" runat="server" Text="CheckOut" OnClick="IDCheckOut_Click" />
+
     </div>
+    <br />
+    <div>
+        <asp:Label ID="lblMessage" runat="server" ForeColor="SteelBlue" Font-Bold="true" ></asp:Label>
+    </div>
+        
+    
 
    <h1>Attendence Record</h1>
     <asp:GridView ID="GridViewID" runat="server" AutoGenerateColumns="false" >

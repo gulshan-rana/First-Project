@@ -54,7 +54,7 @@
                         <li><a runat="server" href="~/AdminDataShow.aspx">User List</a></li>
                         <li><a runat="server" href="~/UserPage.aspx">My Profile</a></li>
                         <li><a runat="server" href="~/AdminAttendenceshow.aspx">User Attendence</a></li>
-                        <li><a style="margin-left:400px;" runat="server" href="~/logInPage">Logout</a></li>
+                        <li><a style="margin-left:400px;" runat="server" href="~/Logout">Logout</a></li>
 
                     </ul>
                 </div>

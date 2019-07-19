@@ -55,7 +55,7 @@
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                         <li><a runat="server" href="~/UserAttendece.aspx">User Attendece</a></li>
-                        <li><a style="margin-left: 440px;" runat="server" href="~/logInPage">Logout</a></li>
+                        <li><a style="margin-left: 440px;" runat="server" href="~/Logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -68,12 +68,9 @@
                   <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-
             </footer>
         </div>   
         </div>
-
-       
     </form>
 </body>
 </html>
