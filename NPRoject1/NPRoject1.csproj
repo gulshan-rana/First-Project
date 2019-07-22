@@ -133,6 +133,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Amin.Master" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Images\test.jpg" />
+    <Content Include="Images\pexels-photo-1308624.jpeg" />
     <Content Include="LogInFirst.aspx" />
     <Content Include="LogInPage.aspx" />
     <Content Include="LogOut.aspx" />
@@ -310,7 +312,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -4,17 +4,32 @@
     th,td {
     text-align:center;
     }
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+    margin-left: 10%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-          <h1>User Name</h1>
+    <div style="text-align:center;">
+          <h1 style="text-align:center;">User Name</h1>
          <asp:DropDownList ID="DDName" runat="server" AutoPostBack="true"  DataTextField="FirstName" DataValueField="id" OnSelectedIndexChanged="DDName_SelectedIndexChanged">
              <asp:ListItem Value="0">--Select User Name--</asp:ListItem>
          </asp:DropDownList>
         <br />
-        <h1>Search Button</h1>
+        <h1 style="text-align:center;">Search Button</h1>
         <asp:Label ID="lblSearchTo" runat="server" Text="SearchTo"></asp:Label>
         <input id="SearchTo" runat="server" type="date" />
         <asp:Label ID="lblSearchFrom" runat="server" Text="SearchFrom"></asp:Label>

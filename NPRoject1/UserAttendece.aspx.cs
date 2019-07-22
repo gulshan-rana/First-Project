@@ -14,8 +14,8 @@ namespace NPRoject1
     {
         string Constring = ConfigurationManager.ConnectionStrings["DataBase"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
-         {
-             if(!Page.IsPostBack)
+        {
+            if (!Page.IsPostBack)
             {
                 refreshdata();
                 refreshPage();
@@ -25,24 +25,59 @@ namespace NPRoject1
         public void refreshPage()
         {
             SqlConnection objSqlConnection = new SqlConnection(Constring);
-            SqlCommand objSqlCommand = new SqlCommand("Select * From UserAttendence Where id=(Select max(id) From UserAttendence)", objSqlConnection);
+            SqlCommand objSqlCommand = new SqlCommand("Select * From UserAttendence   Where UserID='" + Session["id"] + "' Order  by id DESC", objSqlConnection);
             SqlDataAdapter SDA = new SqlDataAdapter(objSqlCommand);
             DataTable DT = new DataTable();
             SDA.Fill(DT);
-            
-            var Checkoutt =Convert.ToString(DT.Rows[0]["CheckOut"]);
-            if (Checkoutt == "")
+            var Checkin =Convert.ToString( DT.Rows[0]["CheckIN"]);
+            var chckout =Convert.ToString( DT.Rows[0]["CheckOut"]);
+            if (Checkin != "" && chckout != "")
             {
-                IDCheckIN.Enabled = false;
+                DateTime CheckIN = Convert.ToDateTime(DT.Rows[0]["CheckIN"]);
+                DateTime Checkout = Convert.ToDateTime(DT.Rows[0]["CheckOut"]);
+                DateTime now = DateTime.Now;
+                DateTime yesterday = now.AddDays(-1);
+
+                if (CheckIN > yesterday && CheckIN <= now && Checkout > yesterday && Checkout <= now)
+                {
+                    IDCheckIN.Enabled = false;
+                    IDCheckOut.Enabled = false;
+                }
+
+                else
+                {
+                    var Checkoutt = Convert.ToString(DT.Rows[0]["CheckOut"]);
+                    if (Checkoutt == "")
+                    {
+                        IDCheckIN.Enabled = false;
+                    }
+                    else
+                    {
+                        IDCheckOut.Enabled = false;
+                    }
+
+                }
+
+
             }
             else
             {
-                IDCheckOut.Enabled = false;
+                var Checkoutt = Convert.ToString(DT.Rows[0]["CheckOut"]);
+                if (Checkoutt == "")
+                {
+                    IDCheckIN.Enabled = false;
+                }
+                else
+                {
+                    IDCheckOut.Enabled = false;
+                }
             }
-
+            
         }
+
+       
         public void refreshdata()
-       {
+        {
             int useid = Convert.ToInt32(Session["id"]);
             SqlConnection objSqlConnection = new SqlConnection(Constring);
             SqlCommand objSqlCommand = new SqlCommand("SearchData", objSqlConnection);
@@ -55,11 +90,9 @@ namespace NPRoject1
             objSqlDataAdapter.Fill(dt);
             GridViewID.DataSource = dt;
             GridViewID.DataBind();
-           
             
         }
-
-
+        
         protected void IDCheckIN_Click(object sender, EventArgs e)
         {
             SqlConnection objSqlConnection = new SqlConnection(Constring);
@@ -75,7 +108,7 @@ namespace NPRoject1
             IDCheckOut.Enabled = true;
             objSqlConnection.Close();
             refreshdata();
-            lblMessage.Text = "Data Save SucessFully";
+            lblMessage.Text = "Check IN SucessFully";
            
 
         }
@@ -93,7 +126,7 @@ namespace NPRoject1
             IDCheckIN.Enabled = true;
             objsqlconnection.Close();
             refreshdata();
-            lblMessage.Text = "Data Save SucessFully";
+            lblMessage.Text = "Check Out SucessFully";
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -101,6 +134,12 @@ namespace NPRoject1
 
             refreshdata();
      
+        }
+
+        protected void GridViewID_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridViewID.PageIndex = e.NewPageIndex;
+            refreshdata();
         }
     }
 }

@@ -16,6 +16,14 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style>
+        
+   body  {
+  background-image: url("Images/test.jpeg");
+  
+    }
+</style>
+       
 </head>
 <body>
     <form id="form1" runat="server">
@@ -53,7 +61,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li><a runat="server" href="~/UserPage.aspx">My Profile</a></li>
                         <li><a runat="server" href="~/UserAttendece.aspx">User Attendece</a></li>
                         <li><a style="margin-left: 440px;" runat="server" href="~/Logout">Logout</a></li>
                     </ul>

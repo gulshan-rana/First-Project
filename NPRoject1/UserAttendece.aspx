@@ -1,9 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="UserAttendece.aspx.cs" Inherits="NPRoject1.UserAttendece" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+ <style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
-    <div>
+    <div style="text-align:center">
         <asp:Label ID="lblSearchTo" runat="server" Text="Search TO"></asp:Label>
         <input id="ISearchTo" type="date" runat="server" />
         <asp:Label ID="lblFrom" runat="server" Text="FRom"></asp:Label>
@@ -11,10 +24,11 @@
         <asp:Button ID="btnSearch" runat="server" Text=" Search " OnClick="btnSearch_Click" />
     </div>
     <br />
-    <div>
-        <asp:Button ID="IDCheckIN" runat="server" Text="CheckIn" OnClick="IDCheckIN_Click" />
+    
+    <div style="text-align:center">
+        <asp:Button ID="IDCheckIN" runat="server" Text="CheckIn" CssClass="btn btn-primary" OnClick="IDCheckIN_Click" />
    
-        <asp:Button ID="IDCheckOut" runat="server" Text="CheckOut" OnClick="IDCheckOut_Click" />
+        <asp:Button ID="IDCheckOut" runat="server" Text="CheckOut" CssClass="btn btn-success" OnClick="IDCheckOut_Click" />
 
     </div>
     <br />
@@ -24,8 +38,9 @@
         
     
 
-   <h1>Attendence Record</h1>
-    <asp:GridView ID="GridViewID" runat="server" AutoGenerateColumns="false" >
+   <h1 style="text-align:center">Attendence Record</h1>
+    <asp:GridView ID="GridViewID" runat="server" AutoGenerateColumns="false" AllowPaging="true" 
+        OnPageIndexChanging="GridViewID_PageIndexChanging" PageIndex="10" >
         <Columns>
             <asp:BoundField DataField="CheckIN" HeaderText="CheckIN Date" />
             <asp:BoundField DataField="CheckOut" HeaderText="CheckOut Date" />

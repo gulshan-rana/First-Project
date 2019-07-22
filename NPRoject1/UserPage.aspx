@@ -1,128 +1,86 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User.Master" AutoEventWireup="true" CodeBehind="UserPage.aspx.cs" Inherits="NPRoject1.UserPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        #imageID {
+        border: 2px solid #0a0a0a;
+    margin-left: 77px;
+        }
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <table>
-      <tr>
-          <td>
+    <div style="padding-top:12px;">
+  <div class="form-group">
+              <asp:Label ID="lblImage" runat="server" Text="Image"></asp:Label>
+               <asp:Image ID="imageID" ImageUrl='<%#Eval("Photo","~/Images/{0}")%>'  runat="server" Height="80" Width="90" />
+           </div>
+    <div class="form-group">      
                <asp:Label ID="lblFirstName" runat="server" Text="First Name"></asp:Label>
-          </td>
-      </tr>
-       <tr>
-           <td>
-               <asp:TextBox ID="textboxFirstName" runat="server"></asp:TextBox>
-           </td>
-       </tr>
-
-       <tr>
-          <td>
+                      <asp:TextBox ID="textboxFirstName" class="form-control" runat="server"></asp:TextBox>
+    </div>
+      <div class="form-group"> 
               <asp:Label ID="lblLastName" runat="server" Text="Last Name"></asp:Label>
-          </td>
-      </tr>
-       <tr>
-           <td>
-               <asp:TextBox ID="textboxLastName" runat="server"></asp:TextBox>
-           </td>
-       </tr>
-       <tr>
-          <td>
+         
+               <asp:TextBox ID="textboxLastName" class="form-control" runat="server"></asp:TextBox>
+          </div>
+       <div class="form-group"> 
               <asp:Label ID="lblEmailAddress" runat="server" Text="Email Address"></asp:Label>
-          </td>
-      </tr>
-       <tr>
-           <td>
-               <asp:TextBox ID="textboxEmailAddress" runat="server"></asp:TextBox>
-           </td>
-       </tr>
-       <tr>
-          <td>
-              <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
-          </td>
-      </tr>
-       <tr>
-           <td>
-               <asp:TextBox ID="textboxPassword" runat="server"></asp:TextBox>
-           </td>
-       </tr>
-       <tr>
-          <td>
+         
+               <asp:TextBox ID="textboxEmailAddress" class="form-control" runat="server"></asp:TextBox>
+           </div>
+ <div class="form-group"> 
+      
+              <asp:Label ID="lblPassword" runat="server" Visible="false" Text="Password"></asp:Label>
+          
+               <asp:TextBox ID="textboxPassword" class="form-control" Visible="false"  runat="server"></asp:TextBox>
+          </div>
+      <div class="form-group">
               <asp:Label ID="lblAddress" runat="server" Text="Address"></asp:Label>
-          </td>
-      </tr>
-       <tr>
-           <td>
-               <asp:TextBox ID="textboxAddress" runat="server"></asp:TextBox>
-           </td>
-       </tr>
-       <tr>
-          <td>
+          
+               <asp:TextBox ID="textboxAddress" class="form-control" runat="server"></asp:TextBox>
+                    </div>
+       <div class="form-group">
               <asp:Label ID="lblPhoneNumber" runat="server" Text="Phone Number"></asp:Label>
-          </td>
-      </tr>
-       <tr>
-           <td>
-               <asp:TextBox ID="textboxPhoneNumber" runat="server"></asp:TextBox>
-           </td>
-       </tr>
+        
+               <asp:TextBox ID="textboxPhoneNumber" class="form-control" runat="server"></asp:TextBox>
+          </div>
 
-       <tr>
-          <td>
+         <div class="form-group">
+       
               <asp:Label ID="lblCountryName" runat="server" Text="Country Name"></asp:Label>
-          </td>
-      </tr>
-       <tr>
-           <td>
-               <asp:DropDownList ID="DDCountryName" runat="server" AutoPostBack="true"  DataValueField="CountryID" OnSelectedIndexChanged="DDCountryName_SelectedIndexChanged" DataTextField="CountryName">
+        
+               <asp:DropDownList ID="DDCountryName" runat="server" class="form-control" DataValueField="CountryID" 
+                   DataTextField="CountryName" OnSelectedIndexChanged="DDCountryName_SelectedIndexChanged" AutoPostBack="true">
                    <asp:ListItem Value="0">--Select Country--</asp:ListItem>
                    
-               </asp:DropDownList>
-           </td>
-       </tr>
+               </asp:DropDownList>                                    
+          </div>
+       <div class="form-group">
 
-       <tr>
-          <td>
+      
               <asp:Label ID="lblStateName" runat="server" Text="State Name"></asp:Label>
-          </td>
-      </tr>
-       <tr>
-           <td>
-               <asp:DropDownList ID="DDStateName" runat="server" AutoPostBack="true" DataTextField="StateName" DataValueField="StateID" OnSelectedIndexChanged="DDStateName_SelectedIndexChanged">
+         
+               <asp:DropDownList ID="DDStateName" runat="server" class="form-control" AutoPostBack="true" DataTextField="StateName" DataValueField="StateID" OnSelectedIndexChanged="DDStateName_SelectedIndexChanged" >
                     <asp:ListItem Value="0">--Select State--</asp:ListItem>
                </asp:DropDownList>
-           </td>
-       </tr>
-
-       <tr>
-          <td>
+            </div>
+        <div class="form-group">
+   
               <asp:Label ID="lblCityName" runat="server" Text="City Name"></asp:Label>
-          </td>
-      </tr>
-       <tr>
-           <td>
-               <asp:DropDownList ID="DDCityName" runat="server" AutoPostBack="true" DataTextField="CityName" DataValueField="CityID"> 
-                    <asp:ListItem Value="0">--Select City--</asp:ListItem>
+         
+               <asp:DropDownList ID="DDCityName" runat="server" class="form-control" AutoPostBack="true" DataTextField="CityName" DataValueField="CityID"> 
+                <asp:ListItem Value="0">--Select City--</asp:ListItem>
                </asp:DropDownList>
-           </td>
-       </tr>
+          </div>
 
-       <tr>
-          <td>
-              <asp:Label ID="lblImage" runat="server" Text="Image"></asp:Label>
-          </td>
-      </tr>
-       <tr>
-           <td> 
-               <asp:FileUpload ID="FileUploadID" runat="server" />
-              <%-- <asp:Image ID="imageID" ImageUrl='<%#Eval("Photo","~/Images/{0}")%>' runat="server" Height="80" Width="90" />--%> 
+         
 
-           </td>
-       </tr>
+             <div class="form-group">
+               <asp:FileUpload ID="FileUploadID" class="form-control" runat="server" />
+             </div>
 
-       <tr>
-           <td>
-               <asp:Button ID="BntUpdate" runat="server" Text="Update" OnClick="BntUpdate_Click" />
-           </td>
-       </tr>
+            <div class="form-group">
+               <asp:Button ID="BntUpdate" runat="server" CssClass="btn btn-success" Text="Update" OnClick="BntUpdate_Click" />
+           </div>
+          </div>
 
-   </table>
 </asp:Content>
