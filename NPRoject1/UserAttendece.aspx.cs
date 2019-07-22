@@ -42,6 +42,12 @@ namespace NPRoject1
                 {
                     IDCheckIN.Enabled = false;
                     IDCheckOut.Enabled = false;
+                 
+                    string message = "Today you have Sucessfully Done CheckIN And CheckOut .";
+                    string script = "window.onload = function(){ alert('";
+                    script += message;
+                    script += "')};";
+                    ClientScript.RegisterStartupScript(this.GetType(), "SuccessMessage", script, true);
                 }
 
                 else

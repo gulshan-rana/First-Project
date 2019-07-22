@@ -81,5 +81,20 @@ namespace NPRoject1
             GridViewID.DataSource = objDataTable;
             GridViewID.DataBind();
         }
+
+        protected void GridViewID_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int id = Convert.ToInt32(GridViewID.DataKeys[e.RowIndex].Values[0]);
+            SqlConnection objSqlConnection = new SqlConnection(constring);
+            SqlCommand objSqlCommand = new SqlCommand("DeleteInfo", objSqlConnection);
+            objSqlCommand.CommandType = CommandType.StoredProcedure;
+            objSqlCommand.Parameters.AddWithValue("@id", id);
+            objSqlCommand.Connection = objSqlConnection;
+            objSqlConnection.Open();
+            objSqlCommand.ExecuteNonQuery();
+            objSqlConnection.Close();
+            refreshdata();
+
+        }
     }
 }

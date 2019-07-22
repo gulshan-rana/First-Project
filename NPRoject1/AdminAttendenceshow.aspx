@@ -31,18 +31,39 @@ tr:nth-child(even) {background-color: #f2f2f2;}
         <br />
         <h1 style="text-align:center;">Search Button</h1>
         <asp:Label ID="lblSearchTo" runat="server" Text="SearchTo"></asp:Label>
-        <input id="SearchTo" runat="server" type="date" />
+        <input id="SearchTo" runat="server" name="meeting-time" type="date" />
         <asp:Label ID="lblSearchFrom" runat="server" Text="SearchFrom"></asp:Label>
         <input id="SearchFrom" runat="server" type="date" />
         <asp:Button ID="BtnSearch" runat="server" Text="Search" OnClick="BtnSearch_Click" />
         <br />
         <h1>Attendence</h1>
-    <asp:GridView ID="GridViewID" runat="server" AutoGenerateColumns="false" >
+    <asp:GridView ID="GridViewID" runat="server" DataKeyNames="id" OnRowEditing="GridViewID_RowEditing"
+        AutoGenerateColumns="false" OnRowCancelingEdit="GridViewID_RowCancelingEdit" 
+         OnRowUpdating="GridViewID_RowUpdating"  OnRowDeleting="GridViewID_RowDeleting" >
         <Columns>
+             <asp:TemplateField HeaderText="CheckIN">
+                 <ItemTemplate>
+                     <asp:Label ID="lblCheckIN" runat="server" Text='<%#Eval("CheckIN") %>'></asp:Label>
+                 </ItemTemplate>
+                 <EditItemTemplate>
+                     <asp:Calendar ID="calanderCheckIN" runat="server" SelectedDate='<%#Eval("CheckIN") %>'></asp:Calendar>
+                 </EditItemTemplate>
+             </asp:TemplateField>
+            
+            <asp:TemplateField HeaderText="CheckIN">
+                 <ItemTemplate>
+                     <asp:Label ID="lblCheckOut" runat="server" Text='<%#Eval("CheckOut") %>'></asp:Label>
+                 </ItemTemplate>
+                 <EditItemTemplate>
+                     <asp:Calendar ID="calanderCheckout" runat="server" SelectedDate='<%#Eval("CheckOut") %>'></asp:Calendar>
+                 </EditItemTemplate>
+             </asp:TemplateField>
+
+
             <asp:BoundField DataField="CheckIN" HeaderText="CheckIN" />
             <asp:BoundField DataField="CheckOut" HeaderText="CheckOut" />
             <asp:BoundField DataField="UserID"  HeaderText="UserID" />
-           
+           <asp:CommandField ShowDeleteButton="true" ShowEditButton="true" />
         </Columns>
     </asp:GridView>
     </div>
