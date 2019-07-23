@@ -37,10 +37,10 @@ tr:nth-child(even) {background-color: #f2f2f2;}
         <asp:Button ID="BtnSearch" runat="server" Text="Search" OnClick="BtnSearch_Click" />
         <br />
         <h1>Attendence</h1>
-    <asp:GridView ID="GridViewID" runat="server" DataKeyNames="id" OnRowEditing="GridViewID_RowEditing"
-        AutoGenerateColumns="false" OnRowCancelingEdit="GridViewID_RowCancelingEdit" 
-         OnRowUpdating="GridViewID_RowUpdating"  OnRowDeleting="GridViewID_RowDeleting" >
+    <asp:GridView ID="GridViewID" runat="server" DataKeyNames="id" 
+        AutoGenerateColumns="false" OnRowDataBound="GridViewID_RowDataBound"  OnRowDeleting="GridViewID_RowDeleting" >
         <Columns>
+        
              <asp:TemplateField HeaderText="CheckIN">
                  <ItemTemplate>
                      <asp:Label ID="lblCheckIN" runat="server" Text='<%#Eval("CheckIN") %>'></asp:Label>
@@ -59,11 +59,8 @@ tr:nth-child(even) {background-color: #f2f2f2;}
                  </EditItemTemplate>
              </asp:TemplateField>
 
-
-            <asp:BoundField DataField="CheckIN" HeaderText="CheckIN" />
-            <asp:BoundField DataField="CheckOut" HeaderText="CheckOut" />
             <asp:BoundField DataField="UserID"  HeaderText="UserID" />
-           <asp:CommandField ShowDeleteButton="true" ShowEditButton="true" />
+           <asp:CommandField ShowDeleteButton="true"  />
         </Columns>
     </asp:GridView>
     </div>

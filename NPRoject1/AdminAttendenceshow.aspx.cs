@@ -25,11 +25,7 @@ namespace NPRoject1
 
             }
         }
-
-        public void buttonsearch()
-        {
-            
-        }
+        
 
         public void refreshdata()
         {
@@ -95,6 +91,15 @@ namespace NPRoject1
             objSqlConnection.Close();
             refreshdata();
 
+        }
+
+        protected void GridViewID_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType==DataControlRowType.DataRow&&e.Row.RowIndex!=GridViewID.EditIndex)
+            {
+                (e.Row.Cells[3].Controls[0] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this row?');";
+                //(e.Row.Cells[2].Controls[1] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this row?');";
+            }
         }
     }
 }

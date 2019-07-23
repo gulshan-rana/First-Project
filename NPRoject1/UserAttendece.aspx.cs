@@ -24,14 +24,21 @@ namespace NPRoject1
 
         public void refreshPage()
         {
+           
             SqlConnection objSqlConnection = new SqlConnection(Constring);
             SqlCommand objSqlCommand = new SqlCommand("Select * From UserAttendence   Where UserID='" + Session["id"] + "' Order  by id DESC", objSqlConnection);
             SqlDataAdapter SDA = new SqlDataAdapter(objSqlCommand);
             DataTable DT = new DataTable();
             SDA.Fill(DT);
-            var Checkin =Convert.ToString( DT.Rows[0]["CheckIN"]);
-            var chckout =Convert.ToString( DT.Rows[0]["CheckOut"]);
-            if (Checkin != "" && chckout != "")
+            if (DT.Rows.Count == 0)
+            {
+                IDCheckIN.Enabled = true;
+                IDCheckOut.Enabled = false;
+            }
+            else {
+                var Checkin =Convert.ToString( DT.Rows[0]["CheckIN"]);
+                   var chckout =Convert.ToString( DT.Rows[0]["CheckOut"]);
+                    if (Checkin != "" && chckout != "")
             {
                 DateTime CheckIN = Convert.ToDateTime(DT.Rows[0]["CheckIN"]);
                 DateTime Checkout = Convert.ToDateTime(DT.Rows[0]["CheckOut"]);
@@ -78,6 +85,11 @@ namespace NPRoject1
                     IDCheckOut.Enabled = false;
                 }
             }
+
+            }
+
+
+           
             
         }
 

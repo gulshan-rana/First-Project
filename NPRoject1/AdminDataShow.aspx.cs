@@ -27,7 +27,7 @@ namespace NPRoject1
         {
             SqlConnection objSqlConnection = new SqlConnection(ConString);
             SqlCommand objSqlCommand = new SqlCommand("DDLogIn", objSqlConnection);
-            objSqlCommand.CommandType = CommandType.Text;
+            objSqlCommand.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter SDA = new SqlDataAdapter(objSqlCommand);
             DataTable DT = new DataTable();
             SDA.Fill(DT);
@@ -102,7 +102,6 @@ namespace NPRoject1
                 SqlCommand objSqlCommand = new SqlCommand("select * From LoginP where id='" + id + "'",objSqlConnection);
                 objSqlConnection.Open();
                 SqlDataReader SDR = objSqlCommand.ExecuteReader();
-                
                 while(SDR.Read())
                 {
                     textboxFirstname.Text = SDR["FirstName"].ToString();
@@ -112,10 +111,38 @@ namespace NPRoject1
                     textboxAddress.Text = SDR["Address"].ToString();
                     textboxPhoneNumber.Text = SDR["PhoneNumber"].ToString();
                     DDRollName.SelectedValue = SDR["RollID"].ToString();
-                    DDCountryName.SelectedValue = SDR["CountryID"].ToString();
-                    DDStatename.SelectedValue = SDR["StateID"].ToString();
-                    DDCityName.SelectedValue = SDR["CityID"].ToString();
+                    string countryID = SDR["CountryID"].ToString();                   
+                    string stateID = SDR["StateID"].ToString();
+                    string cityID = SDR["CityID"].ToString();
+                    
+                    for (int i = 0; i <DDCountryName.Items.Count;i++)
+                    {
+                        if(countryID.Equals(DDCountryName.Items[i].Value))
+                            {
+                            DDCountryName.SelectedValue = Convert.ToString(countryID);
+                            break;
+                            }
+                    }
+                    
+                    var stateValue = State(countryID);
+                    for (int i = 0; i <DDStatename.Items.Count; i++)
+                    {
+                        if (stateID.Equals(DDStatename.Items[i].Value))
+                        {
+                            DDStatename.SelectedValue = Convert.ToString(stateID);
+                            break;
+                        }
+                    }
 
+                    City(stateID);
+                    for (int i = 0; i <DDCityName.Items.Count; i++)
+                    {
+                        if (cityID.Equals(DDCityName.Items[i].Value))
+                        {
+                            DDCityName.SelectedValue = Convert.ToString(cityID);
+                            break;
+                        }
+                    }
                     String Photo = "~/Images/" + SDR["Photo"].ToString(); 
                     ImageGrid.ImageUrl = Photo;
                 }
@@ -133,12 +160,12 @@ namespace NPRoject1
             SDA.Fill(DT);
             DDCountryName.DataSource = DT;
             DDCountryName.DataBind();
-            var cou = DT.Rows[0]["CountryID"].ToString();
+            //var cou = DT.Rows[0]["CountryID"].ToString();
             DDCountryName.DataValueField="CountryID";
-            State(cou);
+            //State(cou);
         }
 
-        public void State(string cou)
+        public string State(string cou)
         {
 
             SqlConnection objSqlConnection = new SqlConnection(ConString);
@@ -147,9 +174,10 @@ namespace NPRoject1
             DataTable DT = new DataTable();
             SDA.Fill(DT);
             DDStatename.DataSource = DT;
-            var State = DT.Rows[0]["StateID"].ToString();
+            var StateID = DT.Rows[0]["StateID"].ToString();
             DDStatename.DataBind();
-            City(State);
+            //City(State);
+            return StateID;
         }
 
 

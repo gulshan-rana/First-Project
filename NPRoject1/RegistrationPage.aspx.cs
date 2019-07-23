@@ -50,7 +50,14 @@ namespace NPRoject1
             textboxLastName.Text = "";
             textboxEmailAddress.Text = "";
             textboxPassword.Text = "";
-            
+            textboxConPassword.Text = "";
+
+            string message = "Data Save Sucessfully .";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "')};";
+            ClientScript.RegisterStartupScript(this.GetType(), "SuccessMessage", script, true);
+
         }
        
 
